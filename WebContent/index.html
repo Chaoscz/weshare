@@ -1,0 +1,124 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>用户登录</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	<link rel="stylesheet" href="js/layer/layer.js">
+	<style type="text/css">
+		body{  
+		background:#444444;
+		margin-left:auto;  
+		margin-right:auto; 
+		margin-top:150px; 
+		width:20em;   
+		}
+	</style>
+	</head>
+	<body>
+		<form action="login" method="post" id="form1">
+		<!--下面是用户名输入框-->
+		<div class="input-group">
+		  
+		  <span class="input-group-addon" id="basic-addon1"></span>
+		  <input id="userName" name="userName" type="text" class="form-control" 
+		  	placeholder="姓名" aria-describedby="basic-addon1">
+		</div>
+		<br>
+		<!--下面是身份证输入框-->
+		<div class="input-group">
+		  <span class="input-group-addon" id="basic-addon1"></span>
+		  <input id="user" name="pwd" type="password" class="form-control" placeholder="身份证"
+		  	 aria-describedby="basic-addon1">
+		</div>
+		<br>
+		<!--下面是登陆按钮,包括颜色控制-->
+		<input type="button" id="btn" style="width:280px;" class="btn btn-default" value="登 录"/>
+		
+		<span style="text-align: right;display: block;margin-top:10px ;">
+		<a style="color:#E38D13;text-decoration: none;cursor:pointer;" onclick="forget()">忘记密码？</a>
+		</span>
+		</form>
+		
+		
+	<div style="width: 100%; margin-top:10px;color:#ccc">
+	<center>
+	<small> 门对门网络科技股份有限公司  
+	by <a href="http://www.szdod.com/Client/Default.aspx"> 门对门 </a> &copy;2017</small>
+	</center>
+	</div>
+		
+	<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+			$(function(){
+				$("#btn").click(function(){
+					//用户名或密码不能为空
+					if($("#userName").val()==""||$("#passWord").val()==""){
+						layer.alert('姓名或密码不能为空！', {
+						  icon: 2,
+						  skin: 'layer-ext-moon' 
+						})
+						
+					}else{
+						$("#form1").submit();
+					}
+					})
+				})
+			
+			//忘记密码
+			function forget(){
+				layer.msg('你怎么什么事都会忘记啊QAQ', {icon: 5});
+			}
+			
+		/* 	function register(){
+				var username = $("#userName1").val();
+				var password1 = $("#Password1").val();
+				var phone = $("#Phone1").val();
+				var describe = $("#Describe1").val();
+				
+				//用户名判空
+				if(username==null || $.trim(username)==''){
+					layer.tips('请输入账号', '#userName1', {tips: [1, '#34495E']});
+					return;
+				}
+				//用户名验证
+				reg1 = /^[a-zA-Z0-9_]{4,9}$/;
+				if(!reg1.test(username)){
+					layer.tips('4到9位数字,字母,下划线', '#userName1', {tips: [1, '#34495E']});return;
+				}
+				
+				//密码判空
+				if(password1==null || $.trim(password1)==''){
+					layer.tips('请输入密码', '#Password1', {tips: [1, '#34495E']});return;
+				}
+				reg2 = /^[a-zA-Z0-9_!@#$%^&*]{6,11}$/;
+				if(!reg2.test(password1)){
+					layer.tips('6到11位数字,字母,特殊字符', '#Password1', {tips: [1, '#34495E']});return;
+				}
+				
+				//判断手机号输入
+				if(phone==null || $.trim(phone)==''){
+					layer.tips('请输入手机号', '#Phone1', {tips: [1, '#34495E']});
+					return;
+				}
+				//验证手机号
+				reg3 = /^1[34578]\d{9}$/;
+				if(!reg3.test(phone)){
+					layer.tips('手机号输入有误！', '#Phone1', {tips: [1, '#34495E']});return;
+				}
+				if(describe==null || $.trim(describe)==''){
+					layer.tips('个人描述不能为空！', '#Describe1', {tips: [1, '#34495E']});return;
+				}
+				
+				$("#form2").submit();
+			} */
+			
+	</script>	
+	
+	</body>
+</html>
+

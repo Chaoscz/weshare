@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  pageEncoding="utf-8"/>
+		<title>员工食堂满意度调查表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	</head>
+		<style type="text/css">
+			label{
+				display: block;
+				margin: 10px 0;
+				margin-left: 5px;
+				font-weight: normal;
+			}
+			.title{
+				margin: 0;
+				background:#cdc08c;
+				color:white;
+				text-align: center;
+			}
+			span{
+				display: block;
+				margin-left: 5px;
+			}
+		</style>
+	<body>
+		
+		<h2>员工食堂满意度调查表</h2>
+		<div class="head">
+			<label>为了完善公司食堂管理、提高食堂服务质量、让员工更加精神饱满地做好本职工作，希望大家从公司实际及自身需求出发，积极配合、认真、详实地填写表单，低于4分的请简述原因，谢谢配合！</label>
+		</div>
+		
+		<div class="content">
+			<form action="formsend" method="post" id="form1">
+			<input type='text' name='userid' id='userid' value="${user.id!}" hidden > 
+			<div class="form-group" >
+			<span class="title">卫生状况</span>
+			<label>对食堂工作人员卫生：<br />
+				<input type="radio" name="v1" id="v1" value="10" />非常满意
+				<input type="radio" name="v1" id="v1" value="9" checked/>较满意
+				<input type="radio" name="v1" id="v1" value="7" />一般
+				<input type="radio" name="v1" id="v1" value="4" />不好
+				<input type="radio" name="v1" id="v1" value="1" />很差
+				<input type='text' class='form-control' name='txt1' id='txt1' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对饭菜以及汤类卫生：<br />
+				<input type="radio" name="v2" id="v2" value="10" />非常满意
+				<input type="radio" name="v2" id="v2" value="9" checked/>较满意
+				<input type="radio" name="v2" id="v2" value="7" />一般
+				<input type="radio" name="v2" id="v2" value="4" />不好
+				<input type="radio" name="v2" id="v2" value="1" />很差
+				<input type='text' class='form-control' name='txt2' id='txt2' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对食堂整体用餐环境：<br />
+				<input type="radio" name="v3" id="v3" value="10" />非常满意
+				<input type="radio" name="v3" id="v3" value="9" checked/>较满意
+				<input type="radio" name="v3" id="v3" value="7" />一般
+				<input type="radio" name="v3" id="v3" value="4" />不好
+				<input type="radio" name="v3" id="v3" value="1" />很差
+				<input type='text' class='form-control' name='txt3' id='txt3' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<span class="title">饭菜质量</span>
+			
+			<label>对食堂饭菜的蔬荤搭配：<br />
+				<input type="radio" name="v4" id="v4" value="10" />非常满意
+				<input type="radio" name="v4" id="v4" value="9" checked/>较满意
+				<input type="radio" name="v4" id="v4" value="7" />一般
+				<input type="radio" name="v4" id="v4" value="4" />不好
+				<input type="radio" name="v4" id="v4" value="1" />很差
+				<input type='text' class='form-control' id='txt4' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对食堂菜品以及汤类口味：<br />
+				<input type="radio" name="v5" id="v5" value="10" />非常满意
+				<input type="radio" name="v5" id="v5" value="9" checked/>较满意
+				<input type="radio" name="v5" id="v5" value="7" />一般
+				<input type="radio" name="v5" id="v5" value="4" />不好
+				<input type="radio" name="v5" id="v5" value="1" />很差
+				<input type='text' class='form-control' name='txt5' id='txt5' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对食堂菜品及水果质量：<br />
+				<input type="radio" name="v6" id="v6" value="10" />非常满意
+				<input type="radio" name="v6" id="v6" value="9" checked/>较满意
+				<input type="radio" name="v6" id="v6" value="7" />一般
+				<input type="radio" name="v6" id="v6" value="4" />不好
+				<input type="radio" name="v6" id="v6" value="1" />很差
+				<input type='text' class='form-control' name='txt6' id='txt6' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对食堂的米饭质量：<br />
+				<input type="radio" name="v7" id="v7" value="10" />非常满意
+				<input type="radio" name="v7" id="v7" value="9" checked/>较满意
+				<input type="radio" name="v7" id="v7" value="7" />一般
+				<input type="radio" name="v7" id="v7" value="4" />不好
+				<input type="radio" name="v7" id="v7" value="1" />很差
+				<input type='text' class='form-control' name='txt7' id='txt7' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对食堂饭菜新鲜程度：<br />
+				<input type="radio" name="v8" id="v8" value="10" />非常满意
+				<input type="radio" name="v8" id="v8" value="9" checked/>较满意
+				<input type="radio" name="v8" id="v8" value="7" />一般
+				<input type="radio" name="v8" id="v8" value="4" />不好
+				<input type="radio" name="v8" id="v8" value="1" />很差
+				<input type='text' class='form-control' name='txt8' id='txt8' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<span class="title">食堂管理</span>
+			<label>对食堂工作人员服务态度：<br />
+				<input type="radio" name="v9" id="v9" value="10" />非常满意
+				<input type="radio" name="v9" id="v9" value="9" checked/>较满意
+				<input type="radio" name="v9" id="v9" value="7" />一般
+				<input type="radio" name="v9" id="v9" value="4" />不好
+				<input type="radio" name="v9" id="v9" value="1" />很差
+				<input type='text' class='form-control' name='txt9' id='txt9' placeholder='选择不好/很差的请简述原因'>
+			</label>
+			<label>对食堂的就餐秩序：<br />
+				<input type="radio" name="v10" id="v10" value="10" />非常满意
+				<input type="radio" name="v10" id="v10" value="9" checked/>较满意
+				<input type="radio" name="v10" id="v10" value="7" />一般
+				<input type="radio" name="v10" id="v10" value="4" />不好
+				<input type="radio" name="v10" id="v10" value="1" />很差
+				<input type='text' class='form-control' name='txt10' id='txt10' placeholder='选择不好/很差的请简述原因'>
+			</label>	
+			<span class="title">其他建议</span>
+			<label>1、请列举出您最喜爱的三种菜式和您不喜欢的三种菜式。</label>
+				<input type="text" class="form-control" name="like" id="" placeholder="最喜欢">
+				<input type="text" class="form-control" name="hate" id="" placeholder="不喜欢">
+			<label>2、在兼顾公司成本的情况下您觉得还应该增加哪些菜式？</label>
+				<input type="text" class="form-control" name="addfood" id="" placeholder="我要吃....肉？">
+			<label>3、您对夏季食物的做法比较倾向于？</label>   
+				<input type="text" class="form-control" name="foodstyle" id="" placeholder="油炸、红烧、清淡等..">
+			<label>4、 您认为公司食堂还有哪些方面需要改善？</label>
+				<input type="text" class="form-control" name="up" id="" placeholder="提些建议吧..">
+			
+			<center>
+			<button type="button" class="btn btn-warning" id="btn" style="margin-top:10px">提交</button>
+			</center>
+			</div>
+			
+			</form>
+			<center>
+			<span style="color:#ccc">
+			再次为您能在百忙之中抽出时间填写问卷表示感谢！</br>
+				门对门网络科技股份有限公司     
+				人力资源部
+			</span>
+			</center>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">		
+				$(function(){
+				$("#btn").click(function(){
+					//用户名或密码不能为空
+					if($("#userName").val()==""||$("#passWord").val()==""){
+						layer.alert('姓名或密码不能为空！', {
+						  icon: 2,
+						  skin: 'layer-ext-moon' 
+						})
+						
+					}else{
+						$("#form1").submit();
+					}
+					})
+				})
+			</script>			
+		</div>
+		
+	</body>
+</html>
