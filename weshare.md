@@ -8,10 +8,10 @@
 
 ```json
 Mysql 连接信息 ::
-host：47.52.61.41
-port：3306
-user：user001
-pwd：14715912300.mm
+host：xx.xx.xx.xx
+port：xxxx
+user：xxx
+pwd：xxx
 ```
 
 ### h_account 用户表
