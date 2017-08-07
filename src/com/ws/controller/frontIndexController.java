@@ -1,4 +1,4 @@
-package com.glacier.controller;
+package com.ws.controller;
 
 
 import java.util.List;
@@ -8,6 +8,7 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 
 public class frontIndexController extends Controller {
+	
 	public void index() {
 		render("index.html");
 	}

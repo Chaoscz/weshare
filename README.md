@@ -1,8 +1,19 @@
 # weshare
-> weshare 轻分享 分享身边快乐
+> 小社区，小圈子
+
+像一场大雨倾盆，
 
 
-cteating a new branch is quick AND simple.
-小社区，小圈子
+这个故事 值得被分享 被倾听
+---------
+
+
+
+
+END 
+
+
+
+
 
 
