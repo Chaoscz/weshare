@@ -5,10 +5,12 @@
 		<title>weshare</title>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		
 		<link rel="stylesheet" type="text/css" href="../css/gotop.css"/>
 		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+		<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+		
 		<style type="text/css">
 			body{
 				margin: 0;
@@ -18,7 +20,6 @@
 			
 			ul,li{list-style:none;}
 			ul,li{padding:0; margin:0;}
-			span{padding-left: 10px;}
 			
 			/*页面容器*/
 			.container{
@@ -96,13 +97,45 @@
 	         #nav li:hover ul{
 	         }
 
-
+			.artlist{
+				border-bottom: 1px #ccc solid;
+			}
+			.artlist img{
+				margin-left: 10px;
+			}
+			.artlist span{
+				display: inline;
+			}
+			.artlist label{
+				font-weight: normal;
+			}
+			.main_article #sp_1{
+				width:40px;
+				text-align: right;
+				margin-left: 10px;
+				color: #ababab;
+				font-size:16px;
+			}
+			.main_article #sp_2{
+				color: #ccc;
+				width:55px;
+				text-align: left;
+				font-size:14px;
+			}
+			.main_article #sp_3{
+				margin-left: 10px;
+				color: greenyellow;
+			}
+			.main_article #sp_4{
+				margin-left: 20px;
+				font-family:"微软雅黑";
+				font-size: 18px;
+			}
 			.main_others{
 				width: 23%;
 				float: right;
 				font-family: "微软雅黑";
 			}
-			
 			.main_others_type{
 				height: 250px;
 				background: white;
@@ -115,7 +148,6 @@
 				height: 40px;
 				background: #f6f6f6;
 			}
-
 			.footer{
 				clear:both;
 				line-height: 50px;
@@ -129,15 +161,14 @@
 				text-decoration:none;
 				color:#ccc;
 			}
-			
 			.footer_top{
 				color: white;
 			}
-			
 			#clearfix{
 				width: 80%;
 				margin: 0 auto;
 			}
+			
 		</style>
 	</head>
 	<body>
@@ -163,8 +194,14 @@
 				<ul class="nav navbar-nav">
 				<li class="dropdown"><a href="default.asp">Home</a></li>
 				<li><a href="news.asp">News</a></li>
+				
+				<#if user ?? >
+				<li><a href="#" style="color:white">${user.nick}</a></li> 
+				<#else>
 				<li><a href="#" onclick="login()">Sign in</a></li>
-				<li><a href="#">Sign up</a></li>
+				<li><a href="#" onclick="registered()">Sign up</a></li>
+				</#if>
+				
 				</ul>
 				</div>
 				
@@ -176,27 +213,46 @@
 			function login(){
 				layer.open({
 					type: 1,
+					title:'欢迎登录',
 					skin: '1',
 					closeBtn: 0,
 					shadeClose: true,
 					area: ['420px', '240px'], //宽高
-					content: '<div class="col-md-12 column" style="margin-top: 20px;"><form role="form">'
+					content: '<div class="col-md-12 column" style="margin-top: 20px;"><form action="/login">'
 				+'<div class="input-group input-group-md">'
 		    	+'<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock">@</i></span>'
-				+'<input type="text" class="form-control" id="exampleInputName2" value="用户名" /></div>'
-				+' <div class="input-group input-group-md">'
+				+'<input type="text" class="form-control" name="userName" id="exampleInputName2" value="用户名" /></div>'
+				+' <div class="input-group input-group-md" style="margin-top:10px">'
 			    +'<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock">@</i></span>'
-				+'<input type="text" class="form-control" id="exampleInputPassword1" value="密码" /></div>'
+				+'<input type="text" class="form-control" name="password" id="exampleInputPassword1" value="123456" /></div>'
 			    +'<center> <button type="submit" class="btn btn-success" style="margin:5px auto;width:200px;">Sign in</button></center>'
 					
 					});
 					
 			}
+			
+			function registered(){
+				layer.open({
+					type: 1,
+					title:'注册',
+					skin: '1',
+					closeBtn: 0,
+					shadeClose: true,
+					area: ['420px', '240px'], //宽高
+					content: '<div class="col-md-12 column" style="margin-top: 20px;"><form action="/registered">'
+				+'<div class="input-group input-group-md">'
+		    	+'<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock">@</i></span>'
+				+'<input type="text" class="form-control" name="userName" id="exampleInputName2" value="用户名" /></div>'
+				+' <div class="input-group input-group-md" style="margin-top:10px">'
+			    +'<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock">@</i></span>'
+				+'<input type="text" class="form-control" name="password" id="exampleInputPassword1" value="123456" /></div>'
+			    +'<center> <button type="submit" class="btn btn-warning" style="margin:5px auto;width:200px;">Sign up</button></center>'
+					
+					});
+					
+			}
+			
 		</script>
-		
-		
-		
-		
 		
 		<!--主要内容-->
 		<div class="main_content" style="margin-top: 20px;">
@@ -212,56 +268,48 @@
 			     	</ul>
 			     	
 				</div>
-				<div class="main_article" style="background: white;padding-top:10px ;">
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
-					<p>bxxxxxxxxxx<br /></p>
+				<div class="main_article" style="background: white;">
+				
+				<#if artlist?? && artlist ?size gt 0>
+					<#list artlist as art >
+					<div class="artlist">
+					<span style="height:40px;line-height:40px">
+					<img src="${art.headimg!}" style="width:30px;height:30px"/>
+					<label id="sp_1">${art.comsum!}/</label>
+					<label id="sp_2">${art.watchsum!}</label>
+					<label id="sp_3">置顶</label> 
+					<label id="sp_4">${art.title!}</label> 
+					</span>
+					
+					</div>	
+					</#list> 
+				<#else>
+					<span>没有更多数据了 ...</span>	
+				</#if>
+				
 				</div>
-				
-				
 				
 				<!--分页-->
 				<div class="row clearfix" style="text-align: center;">
 					<div class="col-md-12 column">
 						<ul class="pagination">
 							<li>
-								 <a href="#">Prev</a>
+								 <a href="/index">Prev</a>
 							</li>
 							<li>
-								 <a href="#">1</a>
+								 <a href="/getpagelist/1">1</a>
 							</li>
 							<li>
-								 <a href="#">2</a>
+								 <a href="/getpagelist/2">2</a>
 							</li>
 							<li>
-								 <a href="#">3</a>
+								 <a href="/getpagelist/3">3</a>
 							</li>
 							<li>
-								 <a href="#">4</a>
+								 <a href="/getpagelist/4">4</a>
 							</li>
 							<li>
-								 <a href="#">5</a>
+								 <a href="/getpagelist/5">5</a>
 							</li>
 							<li>
 								 <a href="#">Next</a>
@@ -334,13 +382,16 @@
 					<div class="row clearfix" id="clearfix">
 					<div class="col-md-4 column">
 						<h2>
-							Heading
+							Glacier
 						</h2>
 						<p>
-							Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+							The WeShare's CEO <br />
+							Graduated from Jiangsu Institute of Technology<br />
+							Love linux, light music, photography, travel<br />
+							JAVA Python NodeJS
 						</p>
 						<p>
-							 <a class="btn" href="#">View details »</a>
+							 <a class="btn" href="http://www.glacier.market/">About &nbsp;&nbsp; Me &nbsp;»</a>
 						</p>
 					</div>
 					<div class="col-md-4 column">

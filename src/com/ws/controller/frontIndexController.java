@@ -1,71 +1,82 @@
 package com.ws.controller;
 
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import com.jfinal.core.Controller;
-import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.ws.dao.artDAO;
+import com.ws.dao.userDAO;
 
 public class frontIndexController extends Controller {
 	
 	public void index() {
+		List<Record> artlist = artDAO.getArticleList();
+		setAttr("user", getSessionAttr("acount"));
+		setAttr("artlist", artlist);
 		render("index.html");
 	}
 	
 	/**
+	 * @Desc 分页
+	 * @author Glacier 
+	 * @date 2017年8月8日
+	 * pageSize 每页显示的数据条数
+	 * curPage 当前显示的页数
+	 */
+	public void getpagelist() {
+		// int pageSize = getParaToInt("pageSize"); 
+		int pageSize = 20; //每页20条
+		int curPage = getParaToInt(0);
+		List<Record> querylist = artDAO.pageQuery(pageSize, curPage,"");
+		setAttr("user", getSessionAttr("acount"));
+		setAttr("artlist", querylist);
+		render("index.html");
+	}
+	
+	
+	
+	/**
 	 * @Desc 用户登录
 	 * @author Glacier 
+	 * @throws NoSuchAlgorithmException 
 	 * @date 2017年7月18日
 	 */
-	public void login() {
+	public void login() throws NoSuchAlgorithmException {
 		String userName = getPara("userName");
-		String cardId = getPara("pwd");
-		List<Record> user = Db.find("select * from user where cardid = ?",cardId);
-		if (user.size() != 0) {
-			//获取用户id
-			setAttr("user", user.get(0));
-			render("canteen.html");
+		String pwd = getPara("password");
+		Record user =  new userDAO().login(userName, pwd);
+		if (user != null ) {
+			setAttr("user", user);
+			setSessionAttr("acount", user);
+			render("index.html");
 		}else {
+			setAttr("msg", "用户名或密码错误!");
 			render("index.html");
 		}
+	
 	}
 	
 	/**
-	 * @Desc 接受表单
+	 * @Desc 用户注册
 	 * @author Glacier 
-	 * @throws Exception 
-	 * @date 2017年7月18日
+	 * @date 2017年8月9日
+	 * @throws NoSuchAlgorithmException
 	 */
-	public void formsend() throws Exception {
-		String userid = getPara("userid");
-		int i ;
-		for (i = 1; i <= 10; i++) {
-			String score = getPara("v"+i+"");
-			String info = getPara("txt"+i+"");
-			Record f_answer = new Record();
-			f_answer.set("score", score);
-			f_answer.set("info", info);
-			f_answer.set("uid", userid);
-			f_answer.set("qid", i);
-			Db.save("answer", f_answer);
-		}
+	public void registered() throws NoSuchAlgorithmException {
 		
-		String like = getPara("like");
-		String hate = getPara("hate");
-		String addfood = getPara("addfood");
-		String foodstyle = getPara("foodstyle");
-		String up = getPara("up");
+		String userName =getPara("userName");
+		String pwd = getPara("password");
+		Record user = new userDAO().registered(userName,pwd);
 		
-		int flat =  Db.update("INSERT into answer(score,info,uid,qid) "
-				+ "VALUES('','"+ like +"',"+userid+","+ i++ +"),"
-				+ "		 ('','"+ hate +"',"+userid+","+ i++ +"),"
-				+ "		 ('','"+ addfood +"',"+userid+","+ i++ +"),"
-				+ "		 ('','"+ foodstyle +"',"+userid+","+ i++ +"),"
-				+ "		 ('','"+ up +"',"+userid+","+ i++ +")");
+		setAttr("user", user);
+		setSessionAttr("acount", user);
+		render("index.html");
 		
-		System.out.println(flat);
-		render("success.html");
 	}
+	
+	
+	
 	
 }
